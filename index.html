@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Перекладач у Вілонську мову</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f0f0f5; padding: 20px; }
+  textarea { width: 100%; height: 120px; font-size: 18px; }
+  #output { margin-top: 20px; font-size: 28px; line-height: 1.5; background: #fff; padding: 15px; border-radius: 8px; min-height: 100px; user-select: all; }
+  button { margin-top: 10px; padding: 10px 20px; font-size: 18px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h1>Перекладач у Вілонську мову</h1>
+<p>Введи текст українською або російською — отримаєш його у вигляді вілонських символів.</p>
+
+<textarea id="inputText" placeholder="Введи текст тут..."></textarea>
+<br>
+<button onclick="translate()">Перекласти</button>
+
+<div id="output" title="Натисни Ctrl+C щоб скопіювати"></div>
+
+<script>
+  const mapping = {
+    "А": "𖤐", "Б": "𖤡", "В": "𖤢", "Г": "𖤣", "Д": "𖤤", "Е": "𖤑", "Ё": "𖤥",
+    "Ж": "𖤦", "З": "𖤧", "И": "𖤒", "Й": "𖤨", "К": "𖤙", "Л": "𖤕", "М": "𖤗",
+    "Н": "𖤩", "О": "𖤓", "П": "𖤪", "Р": "𖤘", "С": "𖤖", "Т": "𖤫", "У": "𖤔",
+    "Ф": "𖤬", "Х": "𖤭", "Ц": "𖤮", "Ч": "𖤯", "Ш": "𖤰", "Щ": "𖤱", "Ъ": "𖤲",
+    "Ы": "𖤳", "Ь": "𖤴", "Э": "𖤵", "Ю": "𖤶", "Я": "𖤷", "Ґ": "𖤸", "Є": "𖤹",
+    "І": "𖤒", "Ї": "𖤻"
+  };
+
+  for (let key in mapping) {
+    mapping[key.toLowerCase()] = mapping[key];
+  }
+
+  function translate() {
+    let input = document.getElementById('inputText').value;
+    let output = '';
+
+    for (let char of input) {
+      output += mapping[char] || char;
+    }
+
+    document.getElementById('output').textContent = output;
+  }
+</script>
+
+</body>
+</html>
